@@ -11,17 +11,27 @@ class BelarusianConverter:
     self.spellings = [Latin1929(), Latin1962()]
 
 
-  def assimilation(self):
-    pass
+  def assimilation(self, text):
+    return text
 
 
-  def plosive_g(self):
-    pass
+  def plosive_g(self, text):
+    '''
+    dictionary_h = ['haza', 'hambija', 'hient', 'hibraltar', 'hitlin', 'ahra', 'arlinhtan', 'redynh']
+    dictionary_g = ['Gaza', 'Gambija', 'Gient', 'Gibraltar', 'Gitlin', 'Agra', 'Arlingtan', 'Redyng']
+    for i in range(len(dictionary_h)):
+      if dictionary_h[i].lower() in text.lower():
+        text = text.replace(dictionary_h[i], dictionary_g[i])
+    '''
+    return text
 
 
-  def convert(self, alphabet: int, text: str):
+  def convert(self, alphabet: int, plosive_g: bool, assimilation: bool, text: str):
     try:
-      return self.spellings[alphabet].get(text)
+      text = self.spellings[alphabet].get(text)
+      if plosive_g: text = self.plosive_g(text)
+      if assimilation: text = self.assimilation(text)
+      return text
     except Exception as e:
       return f'{e}'
     

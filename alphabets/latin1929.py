@@ -31,6 +31,10 @@ class Latin1929:
           if text[i] == self.cyrillic_vowels[v]:
             new_text += self.latin_vowels_j[v]
             break
+    if text[i-1] == 'ь' and text[i-2] == 'л':
+      for v in range(len(self.cyrillic_vowels)):
+        if text[i] == self.cyrillic_vowels[v]:
+          new_text += self.latin_vowels_j[v]
     # пачатак новага слова
     if text[i-1] == ' ':
       for v in range(len(self.cyrillic_vowels)):
@@ -69,6 +73,10 @@ class Latin1929:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v].upper():
             new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
+    if text[i-1] == 'Ь' and text[i-2] == 'Л':
+      for v in range(len(self.cyrillic_vowels)):
+        if text[i] == self.cyrillic_vowels[v].upper():
+          new_text += self.latin_vowels_j[v].upper()
     # пачатак новага слова
     if text[i-1] == ' ':
       if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';' or text[i-2] == '—':
@@ -106,19 +114,28 @@ class Latin1929:
 
 
   def letter_l(self, i, text, new_text):
-    if text[i+1] == 'а' or text[i+1] == 'э' or text[i+1] == 'о' or text[i+1] == 'у' or text[i+1] == 'ы':
-      new_text += 'ł'
-    elif text[i+1] == 'я' or text[i+1] == 'е' or text[i+1] == 'ё' or text[i+1] == 'ю' or text[i+1] == 'і' or text[i+1] == 'ь':
-      new_text += 'l'
+    vowels_lj = 'яеёюіьЯЕЁЮІЬ'
+    vowels_l = 'аэоуыАЭОУЫ'
+    for j in range(len(vowels_l)):
+      if text[i+1] == vowels_l[j]:
+        new_text += 'ł'
+    for j in range(len(vowels_lj)):
+      if text[i+1] == vowels_lj[j]:
+        new_text += 'l'
 
     return new_text
 
 
   def letter_l_top(self, i, text, new_text):
-    if text[i+1] == 'А' or text[i+1] == 'Э' or text[i+1] == 'О' or text[i+1] == 'У' or text[i+1] == 'Ы':
-      new_text += 'Ł'
-    elif text[i+1] == 'Я' or text[i+1] == 'Е' or text[i+1] == 'Ё' or text[i+1] == 'Ю' or text[i+1] == 'І' or text[i+1] == 'Ь':
-      new_text += 'L'
+    vowels_lj = 'яеёюіьЯЕЁЮІЬ'
+    vowels_l = 'аэоуыАЭОУЫ'
+    for j in range(len(vowels_l)):
+      if text[i+1] == vowels_l[j]:
+        new_text += 'Ł'
+    for j in range(len(vowels_lj)):
+      if text[i+1] == vowels_lj[j]:
+        new_text += 'L'
+
 
     return new_text
 
