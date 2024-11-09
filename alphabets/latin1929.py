@@ -1,4 +1,4 @@
-class Latin1962:
+class Latin1929:
   def __init__(self):
     self.cyrillic = [
       'а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'ё', 'ж', 'з', 'і', 'й', 'к', 'л',
