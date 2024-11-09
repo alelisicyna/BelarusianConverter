@@ -1,5 +1,5 @@
 # BelarusianConverter
-Script who convert some Belarusian texts from Cyrillic to other alphabets    
+Script who convert some Belarusian texts from Cyrillic to other Belarusian alphabets       
 Programming Language: Python 3
 ## How to use it?
 1. Download the repository
