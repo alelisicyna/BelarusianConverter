@@ -1,5 +1,5 @@
-from alphabets.latin1929 import Latin1929
-from alphabets.latin1962 import Latin1962
+from BelarusianConverter.alphabets.latin1929 import Latin1929
+from BelarusianConverter.alphabets.latin1962 import Latin1962
 # from alphabets.latinMP import LatinMP
 # from alphabets.latinUN import LatinUN
 # from alphabets.romanization2023 import Romanization2023

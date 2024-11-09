@@ -1,4 +1,4 @@
-class Latin1929:
+class Latin1962:
   def __init__(self):
     self.cyrillic = [
       'а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'ё', 'ж', 'з', 'і', 'й', 'к', 'л',
@@ -16,42 +16,48 @@ class Latin1929:
 
 
   def soft_vowels(self, i, text, new_text):
-    vowels = 'аэоуыяеёюіАЭОУЫЯЕЁЮІ'
-    consonants = 'цкнгґшзхфвпрлджчсмтб'
+    vowels = 'аэоуыяеёюійўАЭОУЫЯЕЁЮІЙЎ'
+    consonants = 'цкнгґшзхфвпрлджчсмтбЦКНГҐШЗХФВПРЛДЖЧСМТБ'
     # j на пачатку тэксту
     if i == 0:
       for v in range(len(self.cyrillic_vowels)):
         if text[i] == self.cyrillic_vowels[v]:
           new_text += self.latin_vowels_j[v]
+          break
     # j пасьля галоснай
     for j in range(len(vowels)):
       if text[i-1] == vowels[j]:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v]:
             new_text += self.latin_vowels_j[v]
+            break
     # пачатак новага слова
     if text[i-1] == ' ':
       for v in range(len(self.cyrillic_vowels)):
         if text[i] == self.cyrillic_vowels[v]:
           new_text += self.latin_vowels_j[v]
+          break
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j].upper() or text[i-1] == consonants[j]:
+      if text[i-1] == consonants[j]:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v]:
             if text[i-1] == 'л':
               new_text += self.latin_vowels_i[v][1]
+              break
             elif text[i-1] == 'Л':
               new_text += self.latin_vowels_i[v][1]
+              break
             else:
               new_text += self.latin_vowels_i[v]
+              break
 
     return new_text
 
 
   def soft_vowels_top(self, i, text, new_text):
-    vowels = 'аэоуыяеёюійўАЭОУЫЯЕЁЮІЎЙ'
-    consonants = 'цкнгґшзхфвпрлджчсмтб'
+    vowels = 'аэоуыяеёюійАЭОУЫЯЕЁЮІЙ'
+    consonants = 'цкнгґшзхфвпрлджчсмтбЦКНГҐШЗХФВПРЛДЖЧСМТБ'
     # j на пачатку тэксту
     if i == 0:
       for v in range(len(self.cyrillic_vowels)):
@@ -65,7 +71,7 @@ class Latin1929:
             new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
     # пачатак новага слова
     if text[i-1] == ' ':
-      if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';':
+      if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';' or text[i-2] == '—':
         if text[i+1].isupper() == True or text[i+2].isupper() == True or text[i-1].isupper() == True:
           for v in range(len(self.cyrillic_vowels)):
             if text[i] == self.cyrillic_vowels[v].upper():
@@ -83,15 +89,18 @@ class Latin1929:
             break
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j].upper() or text[i-1] == consonants[j]:
+      if text[i-1] == consonants[j].upper():
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v].upper():
             if text[i-1] == 'л':
               new_text += self.latin_vowels_i[v][1].upper()
+              break
             elif text[i-1] == 'Л':
               new_text += self.latin_vowels_i[v][1].upper()
+              break
             else:
               new_text += self.latin_vowels_i[v].upper()
+              break
 
     return new_text
 
@@ -140,9 +149,21 @@ class Latin1929:
           new_text += 'Ć'
           break
         elif self.cyrillic[j].upper() == 'Х':
-          if i == 0 or text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';':
-            new_text += self.alphabet[j][0].upper() + self.alphabet[j][1]
+          if i == 0:
+            new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
             break
+          # пачатак новага слова
+          if text[i-1] == ' ':
+            if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';' or text[i-2] == ';' or text[i-2] == '—':
+              if text[i+1].isupper() == True or text[i+2].isupper() == True or text[i-1].isupper() == True:
+                new_text += self.alphabet[j].upper()
+                break
+              else:
+                new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
+                break
+            else:
+              new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
+              break
           else:
             new_text += self.alphabet[j].upper()
             break
