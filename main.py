@@ -19,9 +19,9 @@ class BelarusianConverter:
     pass
 
 
-  def convert(self, spelling: int, text: str):
+  def convert(self, alphabet: int, text: str):
     try:
-      return self.spellings[spelling].get(text)
+      return self.spellings[alphabet].get(text)
     except Exception as e:
       return f'{e}'
     
