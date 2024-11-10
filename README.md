@@ -13,13 +13,13 @@ from BelarusianConverter.main import BelarusianConverter
 
 if __name__ == '__main__':
   BelarusianConverter = BelarusianConverter()
-  text = BelarusianConverter.convert(0, 'А хто там ідзе?') # example
+  text = BelarusianConverter.convert(0, True, True, 'А хто там ідзе?') # example
   print(text)
 
 '''
   Console: A chto tam idzie?
 
-  BelarusianConverter.convert(alphabet: int, text: str)
+  BelarusianConverter.convert(alphabet: int, plosive_g: bool, assimilation: bool, text: str)
   Alphabets:
     0 - Latin1929 (B. Taraskievic)
     1 - Latin1962 (Ja. Stankievic)
