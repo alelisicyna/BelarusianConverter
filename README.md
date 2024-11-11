@@ -21,9 +21,9 @@ if __name__ == '__main__':
 
   BelarusianConverter.convert(alphabet: int, plosive_g: bool, assimilation: bool, text: str)
   Alphabets:
-    0 - LatinMuzyckajaPrauda (K. Kalinouski)
-    1 - Latin1929 (B. Taraskievic)
-    2 - Latin1962 (Ja. Stankievic)
+    0 - LatinMuzyckajaPrauda (K. Kalinoŭski)
+    1 - Latin1929 (B. Taraškievič)
+    2 - Latin1962 (Ja. Stankievič)
     3 - LatinUnitedNations
     4 - Romanization2023
     5 - Arabic (Belarusian Tatars)
