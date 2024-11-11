@@ -1,4 +1,4 @@
-class Latin1962:
+class LatinMP:
   def __init__(self):
     self.cyrillic = [
       'а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'ё', 'ж', 'з', 'і', 'й', 'к', 'л',
@@ -6,8 +6,8 @@ class Latin1962:
       'ы', 'ь', 'э', 'ю', 'я', '’', ' '
     ]
     self.alphabet = [
-      'a', 'b', 'v', 'h', 'g', 'd', '', '', 'ž', 'z', 'i', 'j', 'k', '',
-      'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'ŭ', 'f', 'ch', 'c', 'č', 'š',
+      'a', 'b', 'w', 'h', 'g', 'd', '', '', 'ż', 'z', 'i', 'j', 'k', '',
+      'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'u', 'f', 'ch', 'c', 'cz', 'sz',
       'y', '', 'e', '', '', '', ' '
     ]
     self.cyrillic_vowels = ['я', 'е', 'ё', 'ю']
@@ -26,16 +26,15 @@ class Latin1962:
           break
     # j пасьля галоснай
     for j in range(len(vowels)):
-      if text[i-1] == vowels[j] and i != 0:
+      if text[i-1] == vowels[j]  and i != 0:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v]:
             new_text += self.latin_vowels_j[v]
             break
-    if text[i-1] == 'ь' and text[i-2] == 'л' and i != 0:
+    if text[i-1] == 'ь' and text[i-2] == 'л'  and i != 0:
       for v in range(len(self.cyrillic_vowels)):
         if text[i] == self.cyrillic_vowels[v]:
           new_text += self.latin_vowels_j[v]
-          break
     # пачатак новага слова
     k = 0
     letters = 'йцукенгшўзхфывапролджэячсмітьбюЙЦУКЕНГШЎЗХФЫВАПРОЛДЖЭЯЧСМІТЬБЮ'
@@ -54,7 +53,7 @@ class Latin1962:
       break
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j] and i != 0:
+      if text[i-1] == consonants[j]  and i != 0:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v]:
             if text[i-1] == 'л':
@@ -129,7 +128,7 @@ class Latin1962:
     '''
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j].upper():
+      if text[i-1] == consonants[j].upper() and i != 0:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v].upper():
             if text[i-1] == 'л':
@@ -191,7 +190,47 @@ class Latin1962:
         elif text[i] == 'Н' and (text[i+1] == 'ь' or text[i+1] == 'Ь'):
           new_text += 'Ń'
           break
-        elif self.cyrillic[j].upper() == 'Х':
+        elif self.cyrillic[j].upper() == 'Ш':
+          # пачатак новага слова
+          k = 0
+          letters = 'йцукенгшўзхфывапролджэячсмітьбюЙЦУКЕНГШЎЗХФЫВАПРОЛДЖЭЯЧСМІТЬБЮ'
+          while k != 61:
+            for h in range(len(letters)):
+              if k == 60:
+                new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
+                break
+              if text[i-1] == letters[h]:
+                break
+              elif text[i-1] != letters[h]:
+                k += 1
+            break
+          if i == 0 and (text[i+1].isupper() == False and text[i+2].isupper() == False):
+            new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
+            break
+          else:
+            new_text += self.alphabet[j].upper()
+          break
+        elif self.cyrillic[j].upper() == 'Ч':
+          # пачатак новага слова
+          k = 0
+          letters = 'йцукенгшўзхфывапролджэячсмітьбюЙЦУКЕНГШЎЗХФЫВАПРОЛДЖЭЯЧСМІТЬБЮ'
+          while k != 61:
+            for h in range(len(letters)):
+              if k == 60:
+                new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
+                break
+              if text[i-1] == letters[h]:
+                break
+              elif text[i-1] != letters[h]:
+                k += 1
+            break
+          if i == 0 and (text[i+1].isupper() == False and text[i+2].isupper() == False):
+            new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
+            break
+          else:
+            new_text += self.alphabet[j].upper()
+          break
+        elif self.cyrillic[j].upper() == 'Ж':
           # пачатак новага слова
           k = 0
           letters = 'йцукенгшўзхфывапролджэячсмітьбюЙЦУКЕНГШЎЗХФЫВАПРОЛДЖЭЯЧСМІТЬБЮ'

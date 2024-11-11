@@ -1,14 +1,14 @@
 from BelarusianConverter.alphabets.latin1929 import Latin1929
 from BelarusianConverter.alphabets.latin1962 import Latin1962
-# from alphabets.latinMP import LatinMP
-# from alphabets.latinUN import LatinUN
-# from alphabets.romanization2023 import Romanization2023
+from BelarusianConverter.alphabets.latinMP import LatinMP
+from BelarusianConverter.alphabets.latinUN import LatinUN
+from BelarusianConverter.alphabets.romanization2023 import Romanization2023
 
 
 
 class BelarusianConverter:
   def __init__(self):
-    self.spellings = [Latin1929(), Latin1962()]
+    self.spellings = [LatinMP(), Latin1929(), Latin1962(), LatinUN(), Romanization2023()]
 
 
   def assimilation(self, text):

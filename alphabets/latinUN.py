@@ -1,4 +1,4 @@
-class Latin1962:
+class LatinUN:
   def __init__(self):
     self.cyrillic = [
       'а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'ё', 'ж', 'з', 'і', 'й', 'к', 'л',
@@ -6,9 +6,9 @@ class Latin1962:
       'ы', 'ь', 'э', 'ю', 'я', '’', ' '
     ]
     self.alphabet = [
-      'a', 'b', 'v', 'h', 'g', 'd', '', '', 'ž', 'z', 'i', 'j', 'k', '',
+      'a', 'b', 'v', 'h', 'g', 'd', '', '', 'ž', 'z', 'i', 'j', 'k', 'l',
       'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'ŭ', 'f', 'ch', 'c', 'č', 'š',
-      'y', '', 'e', '', '', '', ' '
+      'y', '', 'e', '', '', '’', ' '
     ]
     self.cyrillic_vowels = ['я', 'е', 'ё', 'ю']
     self.latin_vowels_j = ['ja', 'je', 'jo', 'ju']
@@ -35,7 +35,6 @@ class Latin1962:
       for v in range(len(self.cyrillic_vowels)):
         if text[i] == self.cyrillic_vowels[v]:
           new_text += self.latin_vowels_j[v]
-          break
     # пачатак новага слова
     k = 0
     letters = 'йцукенгшўзхфывапролджэячсмітьбюЙЦУКЕНГШЎЗХФЫВАПРОЛДЖЭЯЧСМІТЬБЮ'
@@ -57,15 +56,8 @@ class Latin1962:
       if text[i-1] == consonants[j] and i != 0:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v]:
-            if text[i-1] == 'л':
-              new_text += self.latin_vowels_i[v][1]
-              break
-            elif text[i-1] == 'Л':
-              new_text += self.latin_vowels_i[v][1]
-              break
-            else:
-              new_text += self.latin_vowels_i[v]
-              break
+            new_text += self.latin_vowels_i[v]
+            break
 
     return new_text
 
@@ -129,45 +121,11 @@ class Latin1962:
     '''
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j].upper():
+      if text[i-1] == consonants[j].upper() and i != 0:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v].upper():
-            if text[i-1] == 'л':
-              new_text += self.latin_vowels_i[v][1].upper()
-              break
-            elif text[i-1] == 'Л':
-              new_text += self.latin_vowels_i[v][1].upper()
-              break
-            else:
-              new_text += self.latin_vowels_i[v].upper()
-              break
-
-    return new_text
-
-
-  def letter_l(self, i, text, new_text):
-    vowels_lj = 'яеёюіьЯЕЁЮІЬ'
-    vowels_l = 'аэоуыАЭОУЫ'
-    for j in range(len(vowels_l)):
-      if text[i+1] == vowels_l[j]:
-        new_text += 'ł'
-    for j in range(len(vowels_lj)):
-      if text[i+1] == vowels_lj[j]:
-        new_text += 'l'
-
-    return new_text
-
-
-  def letter_l_top(self, i, text, new_text):
-    vowels_lj = 'яеёюіьЯЕЁЮІЬ'
-    vowels_l = 'аэоуыАЭОУЫ'
-    for j in range(len(vowels_l)):
-      if text[i+1] == vowels_l[j]:
-        new_text += 'Ł'
-    for j in range(len(vowels_lj)):
-      if text[i+1] == vowels_lj[j]:
-        new_text += 'L'
-
+            new_text += self.latin_vowels_i[v].upper()
+            break
 
     return new_text
 
@@ -240,6 +198,9 @@ class Latin1962:
         elif text[i] == 'ц' and text[i+1] == 'ь':
           new_text += 'ć'
           break
+        elif text[i] == 'л' and text[i+1] == 'ь':
+          new_text += 'ĺ'
+          break
         elif text[i] == 'н' and text[i+1] == 'ь':
           new_text += 'ń'
           break
@@ -262,14 +223,6 @@ class Latin1962:
       # работа з ётаванымі (верхні рэгістр)
       elif text[i] == 'Я' or text[i] == 'Е' or text[i] == 'Ё' or text[i] == 'Ю': 
         new_text = self.soft_vowels_top(i, text, new_text)
-
-      # L і Ł
-      elif text[i] == 'л':
-        new_text = self.letter_l(i, text, new_text)
-
-      # L і Ł (верхні рэгістр)
-      elif text[i] == 'Л':
-        new_text = self.letter_l_top(i, text, new_text)
 
       # работа зь іншымі літарамі
       else:
