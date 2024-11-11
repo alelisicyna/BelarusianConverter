@@ -70,10 +70,13 @@ class LatinUN:
       for v in range(len(self.cyrillic_vowels)):
         if text[i] == self.cyrillic_vowels[v].upper():
           new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
-    if text[i+1].isupper() == True and text[i+2].isupper() == True:
-      for v in range(len(self.cyrillic_vowels)):
-        if text[i] == self.cyrillic_vowels[v].upper():
-          new_text += self.latin_vowels_j[v].upper()
+    try:
+      if text[i+1].isupper() == True and text[i+2].isupper() == True:
+        for v in range(len(self.cyrillic_vowels)):
+          if text[i] == self.cyrillic_vowels[v].upper():
+            new_text += self.latin_vowels_j[v].upper()
+    except:
+      pass
     # j пасьля галоснай
     for j in range(len(vowels)):
       if text[i-1] == vowels[j] and i != 0:
@@ -100,28 +103,9 @@ class LatinUN:
         elif text[i-1] != letters[h]:
           k += 1
       break
-    '''
-    if text[i-1] == ' ' or text[i-1] == '—':
-      if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';' or text[i-2] == '—':
-        if text[i+1].isupper() == True or text[i+2].isupper() == True or text[i-1].isupper() == True:
-          for v in range(len(self.cyrillic_vowels)):
-            if text[i] == self.cyrillic_vowels[v].upper():
-              new_text += self.latin_vowels_j[v].upper()
-              break
-        else:
-          for v in range(len(self.cyrillic_vowels)):
-            if text[i] == self.cyrillic_vowels[v].upper():
-              new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
-              break
-      else:
-        for v in range(len(self.cyrillic_vowels)):
-          if text[i] == self.cyrillic_vowels[v].upper():
-            new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
-            break
-    '''
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j].upper() and i != 0:
+      if text[i-1] == consonants[j]:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v].upper():
             new_text += self.latin_vowels_i[v].upper()
@@ -155,7 +139,7 @@ class LatinUN:
           letters = 'йцукенгшўзхфывапролджэячсмітьбюЙЦУКЕНГШЎЗХФЫВАПРОЛДЖЭЯЧСМІТЬБЮ'
           while k != 61:
             for h in range(len(letters)):
-              if k == 60:
+              if k == 60 and text[i+1].isupper() == False and text[i+2].isupper() == False:
                 new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
                 break
               if text[i-1] == letters[h]:
@@ -166,25 +150,10 @@ class LatinUN:
           if i == 0 and (text[i+1].isupper() == False and text[i+2].isupper() == False):
             new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
             break
-          else:
-            new_text += self.alphabet[j].upper()
-          break
-          '''
-          if text[i-1] == ' ':
-            if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';' or text[i-2] == ';' or text[i-2] == '—':
-              if text[i+1].isupper() == True or text[i+2].isupper() == True or text[i-1].isupper() == True:
-                new_text += self.alphabet[j].upper()
-                break
-              else:
-                new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
-                break
-            else:
-              new_text += f'{self.alphabet[j][0].upper() + self.alphabet[j][1]}'
-              break
-          else:
+          elif text[i+1].isupper() == True and text[i+2].isupper() == True:
             new_text += self.alphabet[j].upper()
             break
-          '''
+          break
         else:
           new_text += self.alphabet[j].upper()
           break

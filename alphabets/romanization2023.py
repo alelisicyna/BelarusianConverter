@@ -70,10 +70,13 @@ class Romanization2023:
       for v in range(len(self.cyrillic_vowels)):
         if text[i] == self.cyrillic_vowels[v].upper():
           new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
-    if text[i+1].isupper() == True and text[i+2].isupper() == True:
-      for v in range(len(self.cyrillic_vowels)):
-        if text[i] == self.cyrillic_vowels[v].upper():
-          new_text += self.latin_vowels_j[v].upper()
+    try:
+      if text[i+1].isupper() == True and text[i+2].isupper() == True:
+        for v in range(len(self.cyrillic_vowels)):
+          if text[i] == self.cyrillic_vowels[v].upper():
+            new_text += self.latin_vowels_j[v].upper()
+    except:
+      pass
     # j пасьля галоснай
     for j in range(len(vowels)):
       if text[i-1] == vowels[j] and i != 0:
@@ -100,28 +103,9 @@ class Romanization2023:
         elif text[i-1] != letters[h]:
           k += 1
       break
-    '''
-    if text[i-1] == ' ' or text[i-1] == '—':
-      if text[i-2] == '.' or text[i-2] == '?' or text[i-2] == '!' or text[i-2] == ';' or text[i-2] == '—':
-        if text[i+1].isupper() == True or text[i+2].isupper() == True or text[i-1].isupper() == True:
-          for v in range(len(self.cyrillic_vowels)):
-            if text[i] == self.cyrillic_vowels[v].upper():
-              new_text += self.latin_vowels_j[v].upper()
-              break
-        else:
-          for v in range(len(self.cyrillic_vowels)):
-            if text[i] == self.cyrillic_vowels[v].upper():
-              new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
-              break
-      else:
-        for v in range(len(self.cyrillic_vowels)):
-          if text[i] == self.cyrillic_vowels[v].upper():
-            new_text += f'{self.latin_vowels_j[v][0].upper() + self.latin_vowels_j[v][1]}'
-            break
-    '''
     # і
     for j in range(len(consonants)):
-      if text[i-1] == consonants[j].upper():
+      if text[i-1] == consonants[j]:
         for v in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[v].upper():
             new_text += self.latin_vowels_i[v].upper()
