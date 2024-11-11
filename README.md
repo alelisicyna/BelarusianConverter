@@ -23,10 +23,10 @@ if __name__ == '__main__':
   Alphabets:
     0 - Latin1929 (B. Taraskievic)
     1 - Latin1962 (Ja. Stankievic)
-    2 - LatinMuzyckajaPrauda (K. Kalinouski) [not working]
-    3 - LatinUnitedNations [not working]
-    4 - Romanization2023 [not working]
-    5 - Arabic (Belarusian Tatars) [not working]
+    2 - LatinMuzyckajaPrauda (K. Kalinouski)
+    3 - LatinUnitedNations
+    4 - Romanization2023
+    5 - Arabic (Belarusian Tatars)
 '''
 
 ```
