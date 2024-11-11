@@ -1,8 +1,8 @@
-from BelarusianConverter.alphabets.latin1929 import Latin1929
-from BelarusianConverter.alphabets.latin1962 import Latin1962
-from BelarusianConverter.alphabets.latinMP import LatinMP
-from BelarusianConverter.alphabets.latinUN import LatinUN
-from BelarusianConverter.alphabets.romanization2023 import Romanization2023
+from BelarusianConverter.converters.latinMP import LatinMP
+from BelarusianConverter.converters.latin1929 import Latin1929
+from BelarusianConverter.converters.latin1962 import Latin1962
+from BelarusianConverter.converters.latinUN import LatinUN
+from BelarusianConverter.converters.romanization2023 import Romanization2023
 
 
 
