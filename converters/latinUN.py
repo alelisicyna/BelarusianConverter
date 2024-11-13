@@ -3,16 +3,16 @@ class LatinUN:
     self.cyrillic = [
       'а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'ё', 'ж', 'з', 'і', 'й', 'к', 'л',
       'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ў', 'ф', 'х', 'ц', 'ч', 'ш',
-      'ы', 'ь', 'э', 'ю', 'я', '’', ' '
+      'ы', 'ь', 'э', 'ю', 'я', '’', "'", ' '
     ]
     self.alphabet = [
       'a', 'b', 'v', 'h', 'g', 'd', '', '', 'ž', 'z', 'i', 'j', 'k', 'l',
       'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'ŭ', 'f', 'ch', 'c', 'č', 'š',
-      'y', '', 'e', '', '', '', ' '
+      'y', '', 'e', '', '', '', "", ' '
     ]
-    self.cyrillic_vowels = ['я', 'е', 'ё', 'ю', 'і']
-    self.latin_vowels_j = ['ja', 'je', 'jo', 'ju', 'ji']
-    self.latin_vowels_i = ['ia', 'ie', 'io', 'iu', 'i']
+    self.cyrillic_vowels = ['я', 'е', 'ё', 'ю']
+    self.latin_vowels_j = ['ja', 'je', 'jo', 'ju']
+    self.latin_vowels_i = ['ia', 'ie', 'io', 'iu']
 
 
   def soft_vowels(self, i, text, new_text):
@@ -24,6 +24,12 @@ class LatinUN:
           if text[i] == self.cyrillic_vowels[j]:
             new_text += self.latin_vowels_i[j]
             return new_text
+      elif text[i] == 'і' and text[i-1] in "'’":
+        new_text += 'ji'
+        return new_text
+      elif text[i] == 'і' and text[i-1] not in "'’":
+        new_text += 'i'
+        return new_text
       else: # Ва ўсіх астатніх выпадках (J)
         for j in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[j]:
@@ -48,6 +54,12 @@ class LatinUN:
           if text[i] == self.cyrillic_vowels[j].upper():
             new_text += self.latin_vowels_i[j].upper()
             return new_text
+      elif text[i] == 'І' and text[i-1] in "'’":
+        new_text += 'JI'
+        return new_text
+      elif text[i] == 'І' and text[i-1] not in "'’":
+        new_text += 'I'
+        return new_text
       else: # Ва ўсіх астатніх выпадках (J)
         for j in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[j].upper():
