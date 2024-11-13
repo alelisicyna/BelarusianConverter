@@ -17,7 +17,7 @@ if __name__ == '__main__':
   print(text) # Return: "A chto tam idzie?"
 
 '''
-  BelarusianConverter.convert(alphabet: int, plosive_g: bool, assimilation: bool, text: str)
+  BelarusianConverter.convert(alphabet: int, text: str, plosive_g = False, assimilation = False, iotation = False)
   alphabet:
     0 - LatinMuzyckajaPrauda (K. Kalinoŭski)
     1 - Latin1929 (B. Taraškievič)
@@ -26,10 +26,13 @@ if __name__ == '__main__':
     4 - Romanization2023
     5 - Arabic (Belarusian Tatars)
   plosive_g:
-    True - add a plosive G
-    False - keep a fricative H
+    True - H -> G in some words
+    False - keep the original text
   assimilation:
     True: add a soft assimilation
+    False: keep the original text
+  iotation:
+    True: I -> Ji/J after vowels
     False: keep the original text
 '''
 
