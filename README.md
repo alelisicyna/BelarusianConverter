@@ -26,8 +26,8 @@ if __name__ == '__main__':
     4 - Romanization2023
     5 - Arabic (Belarusian Tatars)
   plosive_g:
-    True - H -> G in some words
-    False - keep the original text
+    True: H -> G in some words
+    False: keep the original text
   assimilation:
     True: add a soft assimilation
     False: keep the original text
