@@ -12,7 +12,66 @@ class BelarusianConverter:
 
 
   def plosive_g(self, text):
-    return text
+    G_List = [
+      ['švahier', 'švagier'],
+      ['šwahier', 'šwagier'],
+      ['hanak', 'ganak'],
+      ['hvałt', 'gvałt'],
+      ['hwałt', 'gwałt'],
+      ['huzik', 'guzik'],
+      ['honta', 'gonta'],
+      ['niahiehły', 'niagiegły'],
+      ['hirsa', 'girsa'],
+      ['haza', 'gaza'],
+      ['lazh', 'lazg'],
+      ['rezhiny', 'rezginy'],
+      ['mazhi', 'mazgi'],
+      ['rozhi', 'rozgi'],
+      ['hrošy', 'grošy'],
+      ['hieraičny', 'gieraičny'],
+      ['hazeta', 'gazeta'],
+      ['intelihiencyja', 'inteligiencyja'],
+      ['hrabli', 'grabli'],
+      ['hranica', 'granica'],
+      ['hust', 'gust'],
+      ['hrafa', 'grafa'],
+      ['brazhat', 'brazgat'],
+      ['vedzhać', 'vedzgać'],
+      ['wedzhać', 'wedzgać'],
+      ['vozhry', 'vozgry'],
+      ['wozhry', 'wozgry'],
+      ['abryzhły', 'abryzgły'],
+      ['plavuzhać', 'plavuzgać'],
+      ['plawuzhać', 'plawuzgać'],
+      ['ahrest', 'agrest'],
+      ['hierhietać', 'giergietać'],
+      ['cuhli', 'cugli'],
+      ['hłuzd', 'głuzd'],
+      ['džhać', 'džgać'],
+      ['zhrabny', 'zgrabny'],
+      ['zhraja', 'zgraja'],
+      ['hruca', 'gruca'],
+      ['huzy', 'guzy'],
+      ['habruś', 'gabruś'],
+      ['cehła', 'cegła'],
+      ['ahata', 'agata'],
+      ['izhoj', 'izgoj'],
+      ['ciahli', 'ciagli'],
+      ['lezhinka', 'lezginka'],
+      ['harniec', 'garniec'],
+      ['ekshumacyja', 'eksgumacyja']
+    ]
+    new_text = text
+    for i in range(len(G_List)):
+      if G_List[i][0] in text.lower():
+        new_text = new_text.replace(G_List[i][0], G_List[i][1])
+      if G_List[i][0].upper() in text:
+        new_text = new_text.replace(G_List[i][0].upper(), G_List[i][1].upper())
+      if f'{G_List[i][0][0].upper()}{G_List[i][0][1:]}' in text:
+        new_text = new_text.replace(f'{G_List[i][0][0].upper()}{G_List[i][0][1:]}', f'{G_List[i][1][0].upper()}{G_List[i][1][1:]}')
+      else:
+        pass
+    return new_text
 
 
   def assimilation(self, text):
@@ -42,10 +101,10 @@ class BelarusianConverter:
   def convert(self, alphabet: int, text: str, plosive_g = False, assimilation = False, iotation = False):
     try:
       text = self.spellings[alphabet].get(text)
-      if plosive_g:
-        text = self.plosive_g(text=text)
-      if assimilation:
-        text = self.assimilation(text=text)
+      if plosive_g and (alphabet == 1 or alphabet == 2):
+        text = self.plosive_g(text)
+      if assimilation and (alphabet == 0 or alphabet == 1 or alphabet == 2 or alphabet == 3):
+        text = self.assimilation(text)
       if iotation and (alphabet == 1 or alphabet == 2):
         text = self.iotation(text)
       return text

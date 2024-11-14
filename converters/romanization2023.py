@@ -6,7 +6,7 @@ class Romanization2023:
       'ы', 'ь', 'э', 'ю', 'я', '’', "'", ' '
     ]
     self.alphabet = [
-      'a', 'b', 'v', 'h', 'g', 'd', '', '', 'zh', 'z', 'i', 'j', 'k', '',
+      'a', 'b', 'v', 'h', 'g', 'd', '', '', 'zh', 'z', 'i', 'j', 'k', 'l',
       'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'f', 'h', 'c', 'ch', 'sh',
       'y', '', 'e', '', '', '', "", ' '
     ]
@@ -24,12 +24,6 @@ class Romanization2023:
           if text[i] == self.cyrillic_vowels[j]:
             new_text += self.latin_vowels_i[j]
             return new_text
-      elif text[i] == 'і' and text[i-1] in "'’":
-        new_text += 'ji'
-        return new_text
-      elif text[i] == 'і' and text[i-1] not in "'’":
-        new_text += 'i'
-        return new_text
       else: # Ва ўсіх астатніх выпадках (J)
         for j in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[j]:
@@ -54,12 +48,6 @@ class Romanization2023:
           if text[i] == self.cyrillic_vowels[j].upper():
             new_text += self.latin_vowels_i[j].upper()
             return new_text
-      elif text[i] == 'І' and text[i-1] in "'’":
-        new_text += 'JI'
-        return new_text
-      elif text[i] == 'І' and text[i-1] not in "'’":
-        new_text += 'I'
-        return new_text
       else: # Ва ўсіх астатніх выпадках (J)
         for j in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[j].upper():
@@ -120,12 +108,25 @@ class Romanization2023:
           except:
             new_text += self.latin_vowels_j[j].upper()
             return new_text
+        elif text[i] == 'І' and text[i-1] in "'’":
+          new_text += 'JI'
+          return new_text
+        elif text[i] == 'І':
+          new_text += 'I'
+          return new_text
         else:
           new_text += self.alphabet[j].upper()
           return new_text
       elif self.cyrillic[j] == text[i]: # літара ў ніжэйшым рэгістры
-          new_text += self.alphabet[j]
-          return new_text
+          if text[i] == 'і' and text[i-1] in "'’":
+            new_text += 'ji'
+            return new_text
+          elif text[i] == 'і':
+            new_text += 'i'
+            return new_text
+          else:
+            new_text += self.alphabet[j]
+            return new_text
       j += 1
 
     return new_text
@@ -135,10 +136,10 @@ class Romanization2023:
     new_text = ''
     for i in range(len(text)):
       # работа з ётаванымі 
-      if text[i] in 'яеёюі': 
+      if text[i] in 'яеёю': 
         new_text = self.soft_vowels(i, text, new_text)
       # работа з ётаванымі (верхні рэгістр)
-      elif text[i] in 'ЯЕЁЮІ': 
+      elif text[i] in 'ЯЕЁЮ': 
         new_text = self.soft_vowels_top(i, text, new_text)
       # работа зь іншымі літарамі
       else:

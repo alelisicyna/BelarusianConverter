@@ -28,12 +28,6 @@ class Latin1962:
             else:
               new_text += self.latin_vowels_i[j]
               return new_text
-      elif text[i] == 'і' and text[i-1] in "'’":
-        new_text += 'ji'
-        return new_text
-      elif text[i] == 'і' and text[i-1] not in "'’":
-        new_text += 'i'
-        return new_text
       else: # Ва ўсіх астатніх выпадках (J)
         for j in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[j]:
@@ -62,12 +56,6 @@ class Latin1962:
             else:
               new_text += self.latin_vowels_i[j].upper()
               return new_text
-      elif text[i] == 'І' and text[i-1] in "'’":
-        new_text += 'JI'
-        return new_text
-      elif text[i] == 'І' and text[i-1] not in "'’":
-        new_text += 'I'
-        return new_text
       else: # Ва ўсіх астатніх выпадках (J)
         for j in range(len(self.cyrillic_vowels)):
           if text[i] == self.cyrillic_vowels[j].upper():
@@ -128,6 +116,12 @@ class Latin1962:
         elif text[i] == 'Н' and text[i+1] in 'ьЬ':
           new_text += 'Ń'
           return new_text
+        elif text[i] == 'І' and text[i-1] in "'’":
+          new_text += 'JI'
+          return new_text
+        elif text[i] == 'І':
+          new_text += 'I'
+          return new_text
         elif self.cyrillic[j].upper() == 'Х':
           try:
             if text[i+1].isupper() == True:
@@ -156,6 +150,12 @@ class Latin1962:
           elif text[i] == 'н' and text[i+1] in 'ьЬ':
             new_text += 'ń'
             return new_text
+          elif text[i] == 'і' and text[i-1] in "'’":
+            new_text += 'ji'
+            return new_text
+          elif text[i] == 'і':
+            new_text += 'i'
+            return new_text
           else:
             new_text += self.alphabet[j]
             return new_text
@@ -171,10 +171,10 @@ class Latin1962:
     new_text = ''
     for i in range(len(text)):
       # работа з ётаванымі 
-      if text[i] in 'яеёюі': 
+      if text[i] in 'яеёю': 
         new_text = self.soft_vowels(i, text, new_text)
       # работа з ётаванымі (верхні рэгістр)
-      elif text[i] in 'ЯЕЁЮІ': 
+      elif text[i] in 'ЯЕЁЮ': 
         new_text = self.soft_vowels_top(i, text, new_text)
       # L і Ł
       elif text[i] == 'л':
