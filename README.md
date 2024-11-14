@@ -13,7 +13,7 @@ from BelarusianConverter.BelarusianConverter import BelarusianConverter
 
 if __name__ == '__main__':
   BelarusianConverter = BelarusianConverter()
-  text = BelarusianConverter.convert(0, True, True, 'А хто там ідзе?') # example
+  text = BelarusianConverter.convert(0, 'А хто там ідзе?') # example
   print(text) # Return: "A chto tam idzie?"
 
 '''
