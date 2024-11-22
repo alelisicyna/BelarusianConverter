@@ -78,9 +78,12 @@ class Latin1962:
 
   def letter_l(self, i, text, new_text):
     vowels_lj = 'яеёюіьЯЕЁЮІЬ'
-    if text[i+1] in vowels_lj:
-      new_text += 'l'
-    else:
+    try:
+      if text[i+1] in vowels_lj:
+        new_text += 'l'
+      else:
+        new_text += 'ł'
+    except:
       new_text += 'ł'
 
     return new_text
@@ -88,11 +91,13 @@ class Latin1962:
 
   def letter_l_top(self, i, text, new_text):
     vowels_lj = 'яеёюіьЯЕЁЮІЬ'
-    if text[i+1] in vowels_lj:
-      new_text += 'L'
-    else:
+    try:
+      if text[i+1] in vowels_lj:
+        new_text += 'L'
+      else:
+        new_text += 'Ł'
+    except:
       new_text += 'Ł'
-
 
     return new_text
 
