@@ -11,11 +11,8 @@ from BelarusianConverter import BelarusianConverter
 
 
 
-script = BelarusianConverter()
-
-
 if __name__ == '__main__':
-  text = script.convert(0, 'А хто там ідзе?') # example
+  text = BelarusianConverter().convert(0, 'А хто там ідзе?') # example
   print(text) # Return: "A chto tam idzie?"
 
 '''
