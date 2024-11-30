@@ -1,10 +1,10 @@
 # BelarusianConverter
-Script who convert some Belarusian texts from Cyrillic to other Belarusian alphabets       
-Programming Language: Python 3
-## How to use it?
-1. Download the repository
-2. Add the directory to your project
-3. Code example:
+Library for convertation Belarusian texts from Cyrillic to other Belarusian alphabets
+## Quick Start
+```py
+$ pip install belarusianconverter
+```
+## Code Example
 ```py
 # test.py
 from BelarusianConverter.BelarusianConverter import BelarusianConverter
@@ -40,6 +40,6 @@ if __name__ == '__main__':
 4. ???
 5. Profit.     
 
-## Other
+## Links
 About Belarusian Latin: [Wikipedia](https://en.wikipedia.org/wiki/Belarusian_Latin_alphabet)      
 About Belarusian Arabic: [Wikipedia](https://en.wikipedia.org/wiki/Belarusian_Arabic_alphabet)
