@@ -16,7 +16,7 @@ if __name__ == '__main__':
   print(text) # Return: "A chto tam idzie?"
 
 '''
-  BelarusianConverter.convert(alphabet: int, text: str, plosive_g = False, assimilation = False, iotation = False)
+  BelarusianConverter().convert(alphabet: int, text: str, plosive_g: bool, assimilation: bool, iotation: bool)
   alphabet:
     0 - LatinMuzyckajaPrauda (K. Kalinoŭski)
     1 - Latin1929 (B. Taraškievič)
