@@ -8,7 +8,7 @@ def readme():
 
 setup(
   name='belarusianconverter',
-  version='0.0.3',
+  version='0.0.5',
   author='alelisicyna',
   author_email='alelisicyna@gmail.com',
   description='Library for convertation Belarusian texts from Cyrillic to other Belarusian alphabets',

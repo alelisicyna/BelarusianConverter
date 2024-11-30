@@ -36,9 +36,7 @@ if __name__ == '__main__':
     False: keep the original text
 '''
 
-```
-4. ???
-5. Profit.     
+```    
 
 ## Links
 About Belarusian Latin: [Wikipedia](https://en.wikipedia.org/wiki/Belarusian_Latin_alphabet)      
