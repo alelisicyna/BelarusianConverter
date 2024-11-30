@@ -7,7 +7,7 @@ $ pip install belarusianconverter
 ## Code Example
 ```py
 # test.py
-from BelarusianConverter.BelarusianConverter import BelarusianConverter
+from BelarusianConverter import BelarusianConverter
 
 
 
